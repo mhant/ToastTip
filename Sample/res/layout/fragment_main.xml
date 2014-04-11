@@ -1,0 +1,98 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.androiddev101.sampletoasttip.MainActivity$PlaceholderFragment" 
+    android:orientation="horizontal"
+    >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_margin="10dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:background="#888888"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/text3"
+            android:layout_margin="10dp"
+            android:padding="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:text="test3 short" />
+
+        <TextView
+            android:id="@+id/text2"
+            android:layout_margin="10dp"
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:background="@android:color/white"
+            android:text="test2 short click" />
+
+        <TextView
+            android:id="@+id/text1_above"
+            android:layout_margin="10dp"
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:text="test1 short above" />
+        <TextView
+            android:id="@+id/text1_below"
+            android:layout_margin="10dp"
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:text="test1 short below" />
+        
+          <TextView
+            android:id="@+id/text4"
+            android:layout_width="match_parent"
+            android:layout_margin="10dp"
+            android:padding="10dp"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:text="test4" />
+          
+           <TextView
+            android:id="@+id/text5"
+            android:layout_width="match_parent"
+            android:layout_margin="10dp"
+            android:padding="10dp"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:text="test5" />
+        
+          <TextView
+            android:id="@+id/text6"
+            android:layout_width="match_parent"
+            android:layout_margin="10dp"
+            android:padding="10dp"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:text="test6" />
+          
+            <TextView
+            android:id="@+id/text7"
+            android:layout_width="match_parent"
+            android:layout_margin="10dp"
+            android:padding="10dp"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:text="test7" />
+
+    </LinearLayout>
+    </ScrollView>
+</LinearLayout>
