@@ -1,5 +1,11 @@
 A library for easily attaching tip styled Toast notifications to views.  More info to come...
 
+Here is a quick image of a ToastTip in action
+
+![alt tag](http://androiddev101.com/downloads/img/screenshot1.png)
+
+LICENSE
+
 Copyright 2014 AndroidDev101
 
 Licensed under the Apache License, Version 2.0 (the "License");
