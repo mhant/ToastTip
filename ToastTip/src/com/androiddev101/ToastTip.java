@@ -95,7 +95,9 @@ public class ToastTip {
 					marginAdjust = mlp.bottomMargin + mlp.topMargin;
 				}
 				int toastHeight = mToast.getView().getHeight();
-				int yAdjust = ((mShowType == mShowType.ABOVE_VIEW)?(0 - mAttachedView.getHeight() - marginAdjust - toastHeight):(0 + mAttachedView.getHeight() - marginAdjust));
+				int yAdjust = ((mShowType == ShowType.ABOVE_VIEW)?(0 - mAttachedView.getHeight() - marginAdjust - toastHeight):(0 + mAttachedView.getHeight() - marginAdjust));
+				TextView tv = (TextView) ((mToast.getView()).findViewById(R.id.tv_toast_text));
+				tv.setWidth(mAttachedView.getWidth());
 				mToast.setGravity(Gravity.TOP | Gravity.LEFT, viewLocation[X], viewLocation[Y]  + yAdjust);
 			}
 			else if(mShowType == ShowType.TOP){
