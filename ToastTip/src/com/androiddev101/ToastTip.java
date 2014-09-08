@@ -6,11 +6,14 @@ import com.androiddev101.toasttip.R;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.Log;
+import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.MeasureSpec;
 import android.view.ViewGroup.LayoutParams;
 import android.view.ViewGroup.MarginLayoutParams;
+import android.view.ViewTreeObserver;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -80,7 +83,7 @@ public class ToastTip {
 		}
 		if(mToast != null && mAttachedView != null){
 			
-			int viewLocation[] = new int[2];
+			final int viewLocation[] = new int[2];
 			mAttachedView.getLocationOnScreen(viewLocation);
 			if(viewLocation[X] <= MIN_VALID_CORD || 
 					viewLocation[Y] <= MIN_VALID_CORD ){
@@ -88,24 +91,58 @@ public class ToastTip {
 			}
 			//assuming that view is in viewgroup with marginlayoutparams derivative then can adjust position
 			if(mShowType == ShowType.BELOW_VIEW || mShowType == ShowType.ABOVE_VIEW){
+				final View toastView = mToast.getView();
 				LayoutParams lp = mAttachedView.getLayoutParams();
-				int marginAdjust = 0;
+				int marginAdjustTop = 0, marginAdjustBottom = 0;
 				if(lp instanceof MarginLayoutParams){
 					MarginLayoutParams mlp = ((MarginLayoutParams)lp);
-					marginAdjust = mlp.bottomMargin + mlp.topMargin;
+					marginAdjustTop =  mlp.topMargin;
+					marginAdjustBottom = mlp.bottomMargin;
 				}
-				int toastHeight = mToast.getView().getHeight();
-				int yAdjust = ((mShowType == ShowType.ABOVE_VIEW)?(0 - mAttachedView.getHeight() - marginAdjust - toastHeight):(0 + mAttachedView.getHeight() - marginAdjust));
-				TextView tv = (TextView) ((mToast.getView()).findViewById(R.id.tv_toast_text));
-				tv.setWidth(mAttachedView.getWidth());
-				mToast.setGravity(Gravity.TOP | Gravity.LEFT, viewLocation[X], viewLocation[Y]  + yAdjust);
+				final int finalMarginAdjustTop = marginAdjustTop;
+				final int finalMarginAdjustBottom = marginAdjustBottom;
+				int toastHeight = toastView.getHeight();
+				//in case the toast has not been inflated then calculate toast height after being shown
+				if(toastHeight == 0){
+					mToast.show();
+					mToast.cancel();
+					
+					final ViewTreeObserver observer= toastView.getViewTreeObserver();
+			           observer.addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
+			                @Override
+			                public void onGlobalLayout() {
+			                	moveToast(viewLocation, toastView, finalMarginAdjustTop, finalMarginAdjustBottom,  toastView.getHeight());   
+			                	mToast.show();
+			                	mToastShown = mToast;
+			                }
+			            });
+				}
+				else{
+					moveToast(viewLocation, toastView, finalMarginAdjustTop, finalMarginAdjustBottom , toastHeight);
+					mToast.show();
+					mToastShown = mToast;
+				}
 			}
 			else if(mShowType == ShowType.TOP){
 				mToast.setGravity(Gravity.TOP | Gravity.CENTER,0, 0);
+				mToast.show();
+				mToastShown = mToast;
 			}
-			mToast.show();
-			mToastShown = mToast;
+			else if(mShowType == ShowType.BOTTOM){
+				mToast.setGravity(Gravity.BOTTOM | Gravity.CENTER,0, 0);
+				mToast.show();
+				mToastShown = mToast;
+			}
+
 		}
+	}
+
+	private void moveToast(int[] viewLocation, final View toastView,
+			int marginTop, int marginBottom, int toastHeight) {
+		int yAdjust = ((mShowType == ShowType.ABOVE_VIEW)?(0 - mAttachedView.getHeight() - toastHeight + marginTop):(0 + mAttachedView.getHeight() - marginBottom - marginTop));
+		TextView tv = (TextView) ((toastView).findViewById(R.id.tv_toast_text));
+		tv.setWidth(mAttachedView.getWidth());
+		mToast.setGravity(Gravity.TOP | Gravity.LEFT, viewLocation[X], viewLocation[Y]  + yAdjust);
 	}
 	
 	/**

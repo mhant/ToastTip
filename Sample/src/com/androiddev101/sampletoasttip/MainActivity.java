@@ -80,11 +80,12 @@ public class MainActivity extends ActionBarActivity {
         	TextView text4 = (TextView) rootView.findViewById(R.id.text4);
         	ToastTip.attachToView(text4, "Text 4, ok another really long hint cause that's how we roll.  When we say roll we mean rollin text like we just don't care...throw them vowels up in the air...like we still don't care.");
         	TextView text5 = (TextView) rootView.findViewById(R.id.text5);
-        	ToastTip.attachToView(text5, "Text 5, We mean rollin text like we just don't care...throw them vowels up in the air...like we still don't care.");
+        	ToastTip.attachToView(text5, "Text 5, We mean rollin text like we just don't care...throw them vowels up in the air...like we still don't care.", ShowType.BOTTOM);
         	TextView text6 = (TextView) rootView.findViewById(R.id.text6);
-        	ToastTip.attachToView(text6, "test 6");
+        	ToastTip.attachToView(text6, "Text 6, abbra kadabra bakala mazuza", ShowType.ABOVE_VIEW);
         	TextView text7 = (TextView) rootView.findViewById(R.id.text7);
-        	ToastTip.attachToView(text7, "test 7");
+        	ToastTip.attachToView(text7, "Text 7, Woogy boogy hookie pookie", ShowType.BELOW_VIEW);
+
 
         }
     }

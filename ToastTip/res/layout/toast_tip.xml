@@ -9,9 +9,8 @@
         android:id="@+id/tv_toast_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="1dp"
-        android:background="@drawable/background_yello_dotted"
-        android:padding="2dp"
-        android:text="placeholder" />
+        android:text="placeholder" 
+        style="@style/ToastTip"
+        />
 
 </LinearLayout>

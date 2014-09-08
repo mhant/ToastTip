@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="yellow">#DDDFFF00</color>
-    <color name="grey_border">#88666666</color>
+    <color name="base">#FFFF41</color>
+    <color name="border">#D33684</color>
+    <color name="text_color">#945579</color>
 </resources>
